@@ -1,0 +1,26 @@
+{
+  "name": "aura-challenge-zips",
+  "version": "0.0.0",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=6.0.0"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "prettier": "^1.19.1",
+    "serverless": "^2.22.0"
+  },
+  "dependencies": {},
+  "scripts": {
+    "format:fix": "prettier --write **/*.{js,ts,md}",
+    "test": "jest",
+    "message": "serverless invoke local -f message",
+    "zipCode:noFilters": "serverless invoke local -f searchZipCode -p ./events/zipCodeNoParams.json",
+    "zipCode:ExactMatch": "serverless invoke local -f searchZipCode -p events/ZipCodeWithExactMatch.json",
+    "zipCode:MultipleMatch": "serverless invoke local -f searchZipCode -p events/ZipCodeWithMultipleMatch.json",
+    "zipCode:ByCity": "serverless invoke local -f searchZipCode -p events/ZipCodeByCity.json",
+    "zipCode:ByTimezone": "serverless invoke local -f searchZipCode -p events/ZipCodeByTimeZone.json",
+    "zipCode:ByState": "serverless invoke local -f searchZipCode -p events/ZipCodeByState.json"
+  }
+}

@@ -1,0 +1,26 @@
+service: lambda-challenge
+# default to avoid serverless command to fail
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: "20201221"
+
+functions:
+  message:
+    handler: src/message.handler
+    memorySize: 128
+    description: "Return the api message"
+    runtime: nodejs12.x
+    events:
+      - http:
+          path: /resource
+          method: post
+  searchZipCode:
+    handler: src/zipCode.handler
+    memorySize: 128
+    description: "Search zip code using zipcode, principal_city, state, timezone to filter"
+    runtime: nodejs12.x
+    events:
+      - http:
+          path: /resource
+          method: get

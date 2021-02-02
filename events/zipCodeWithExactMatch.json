@@ -1,0 +1,8 @@
+{
+  "httpMethod": "GET",
+  "path": "/resource",
+  "headers": {},
+  "queryStringParameters": {
+    "zipCode": "01561"
+  }
+}
