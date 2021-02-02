@@ -1,3 +1,4 @@
+const { insideCircle } = require("geolocation-utils");
 /**
  * [filterByPrimaryCity description]
  *
@@ -58,8 +59,52 @@ const filterByState = ({ data, state }) => {
   return data.filter((item) => item.state === state);
 };
 
+/**
+ * [filterClosestLocations description]
+ * @param {Array} data
+ * @param {number} latitude
+ * @param {number} longitude
+ * @param {number} radiusToCalculate
+ * @return  {Array}  [return description]
+ */
+const filterClosestLocations = ({
+  data,
+  latitude,
+  longitude,
+  radiusToCalculate,
+}) => {
+  let radius = 10000;
+
+  if (radiusToCalculate) {
+    if (isNaN(radiusToCalculate)) {
+      throw new Error("radius value is not number");
+    }
+    radius = parseInt(radiusToCalculate);
+  }
+
+  if (!data) {
+    throw new Error("Data not provided");
+  }
+
+  if (!Array.isArray(data)) {
+    throw new Error("Wrong data type");
+  }
+  const center = { latitude: latitude, longitude: longitude };
+  return data.filter((item) =>
+    insideCircle(
+      {
+        latitude: parseFloat(item.latitude),
+        longitude: parseFloat(item.longitude),
+      },
+      center,
+      radius
+    )
+  );
+};
+
 module.exports = {
   filterByTimeZone,
   filterByPrimaryCity,
   filterByState,
+  filterClosestLocations,
 };

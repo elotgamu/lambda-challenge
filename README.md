@@ -84,7 +84,14 @@ After you submit the completed project, we will schedule a follow-up code-review
 
 ## Package Scripts
 
-| command              | description                  |
-| :------------------- | :--------------------------- |
-| `npm run format:fix` | format files with "prettier" |
-| `npm run test`       | execute tests with "jest"    |
+| command                         | description                             |
+| :------------------------------ | :-------------------------------------- |
+| `npm run format:fix`            | format files with "prettier"            |
+| `npm run test`                  | execute tests with "jest"               |
+| `npm run zipCode:noFilters`     | Fn with no quey parameters in event     |
+| `npm run zipCode:ExactMatch`    | Fn to search an specific zipCode        |
+| `npm run zipCode:MultipleMatch` | Fn to search zip code match             |
+| `npm run zipCode:ByCity`        | Fn to search zip code by principal city |
+| `npm run zipCode:ByTimezone`    | Fn to search zip code by timezone       |
+| `npm run zipCode:ByState`       | Fn to search zip code by state match    |
+| `npm run message`               | Fn to display a message (via POST)      |

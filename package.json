@@ -11,7 +11,9 @@
     "prettier": "^1.19.1",
     "serverless": "^2.22.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "geolocation-utils": "^1.2.3"
+  },
   "scripts": {
     "format:fix": "prettier --write **/*.{js,ts,md}",
     "test": "jest",
@@ -21,6 +23,7 @@
     "zipCode:MultipleMatch": "serverless invoke local -f searchZipCode -p events/ZipCodeWithMultipleMatch.json",
     "zipCode:ByCity": "serverless invoke local -f searchZipCode -p events/ZipCodeByCity.json",
     "zipCode:ByTimezone": "serverless invoke local -f searchZipCode -p events/ZipCodeByTimeZone.json",
-    "zipCode:ByState": "serverless invoke local -f searchZipCode -p events/ZipCodeByState.json"
+    "zipCode:ByState": "serverless invoke local -f searchZipCode -p events/ZipCodeByState.json",
+    "zipCode:ByClosestLocations": "serverless invoke local -f searchZipCode -p events/zipCodeClosestLocations.json"
   }
 }

@@ -1,0 +1,9 @@
+{
+  "httpMethod": "GET",
+  "path": "/resource",
+  "headers": {},
+  "queryStringParameters": {
+    "latitude": "42.06",
+    "longitude": "-72.61"
+  }
+}
