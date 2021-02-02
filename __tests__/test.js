@@ -1,4 +1,4 @@
-const { handler } = require("./index");
+const { handler } = require("../src/index");
 
 describe("basic tests", () => {
   test("handler function exists", () => {
