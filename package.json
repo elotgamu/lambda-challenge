@@ -9,7 +9,8 @@
   "devDependencies": {
     "jest": "^26.0.1",
     "prettier": "^1.19.1",
-    "serverless": "^2.22.0"
+    "serverless": "^2.22.0",
+    "serverless-jest-plugin": "^0.3.0"
   },
   "dependencies": {
     "geolocation-utils": "^1.2.3"
@@ -24,6 +25,7 @@
     "zipCode:ByCity": "serverless invoke local -f searchZipCode -p events/ZipCodeByCity.json",
     "zipCode:ByTimezone": "serverless invoke local -f searchZipCode -p events/ZipCodeByTimeZone.json",
     "zipCode:ByState": "serverless invoke local -f searchZipCode -p events/ZipCodeByState.json",
-    "zipCode:ByClosestLocations": "serverless invoke local -f searchZipCode -p events/zipCodeClosestLocations.json"
+    "zipCode:ByClosestLocations": "serverless invoke local -f searchZipCode -p events/zipCodeClosestLocations.json",
+    "deploy": "serverless deploy"
   }
 }
