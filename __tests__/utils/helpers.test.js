@@ -3,8 +3,42 @@ const {
   filterByTimeZone,
   filterByState,
   filterClosestLocations,
+  filterByZipCode,
 } = require("../../src/utils/helpers");
 const data = require("../../src/data.json");
+
+describe("Filter by zip code", () => {
+  test("Filter by zipcode exists", () => {
+    expect(typeof filterByZipCode).toBe("function");
+  });
+
+  test("filter by zipcode throws error when no data is provided", () => {
+    const response = () => filterByZipCode({});
+    expect(response).toThrowError();
+  });
+
+  test("filter by zip code to throw error when no zipcode is provided", () => {
+    const response = () => filterByZipCode({ data: data });
+    console.log(response);
+    expect(response).toThrowError("Zipcode not provided");
+  });
+
+  test("filter by zipcode should return no result on non existing zipcode in data", () => {
+    // a zip code from CABA - Argentina
+    const response = filterByZipCode({ data: data, zipCode: "B1675" });
+    expect(response.length).toBe(0);
+  });
+
+  test("filter by zipcode should return result on existing zipcode in data", () => {
+    const response = filterByZipCode({ data: data, zipCode: "01003" });
+    expect(response.length).toBe(1);
+  });
+
+  test("filter by zipcode should return result on partial coincidence of a zipcode", () => {
+    const response = filterByZipCode({ data: data, zipCode: "015" });
+    expect(response.length).toBeGreaterThan(0);
+  });
+});
 
 describe("Filter by Primary city", () => {
   test("filter by primary city exists", () => {

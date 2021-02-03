@@ -1,4 +1,28 @@
 const { insideCircle } = require("geolocation-utils");
+
+/**
+ * [filterByZipCode description]
+ *
+ * @param   {Array}  data     [data description]
+ * @param   {string}  zipCode  [zipCode description]
+ *
+ * @return  {Array}           [return description]
+ */
+const filterByZipCode = ({ data, zipCode }) => {
+  if (!data) {
+    throw new Error("Data not provided");
+  }
+
+  if (!Array.isArray(data)) {
+    throw new Error("Wrong data type");
+  }
+
+  if (!zipCode || zipCode === "") {
+    throw new Error("Zipcode not provided");
+  }
+
+  return data.filter((item) => item.zip.includes(zipCode));
+};
 /**
  * [filterByPrimaryCity description]
  *
@@ -134,6 +158,7 @@ const filterClosestLocations = ({
 };
 
 module.exports = {
+  filterByZipCode,
   filterByTimeZone,
   filterByPrimaryCity,
   filterByState,
