@@ -1,5 +1,6 @@
 const data = require("./data.json");
 const {
+  filterByZipCode,
   filterByPrimaryCity,
   filterByState,
   filterByTimeZone,
@@ -23,7 +24,7 @@ module.exports.handler = async (event, context, callback) => {
     }
 
     if (query.zipCode) {
-      const zipCodes = data.filter((item) => item.zip.includes(query.zipCode));
+      const zipCodes = filterByZipCode({ data: data, zipCode: query.zipCode });
       return new Promise((resolve) => {
         resolve({
           statusCode: 200,

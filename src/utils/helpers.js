@@ -1,4 +1,28 @@
 const { insideCircle } = require("geolocation-utils");
+
+/**
+ * [filterByZipCode description]
+ *
+ * @param   {Array}  data     [data description]
+ * @param   {string}  zipCode  [zipCode description]
+ *
+ * @return  {Array}           [return description]
+ */
+const filterByZipCode = ({ data, zipCode }) => {
+  if (!data) {
+    throw new Error("Data not provided");
+  }
+
+  if (!Array.isArray(data)) {
+    throw new Error("Wrong data type");
+  }
+
+  if (!zipCode || zipCode === "") {
+    throw new Error("Zipcode not provided");
+  }
+
+  return data.filter((item) => item.zip.includes(zipCode));
+};
 /**
  * [filterByPrimaryCity description]
  *
@@ -14,6 +38,10 @@ const filterByPrimaryCity = ({ data, primary_city }) => {
 
   if (!Array.isArray(data)) {
     throw new Error("Wrong data type");
+  }
+
+  if (!primary_city || primary_city === "") {
+    throw new Error("No primary city provided");
   }
 
   return data.filter((item) => item.primary_city.includes(primary_city));
@@ -36,6 +64,10 @@ const filterByTimeZone = ({ data, timeZone }) => {
     throw new Error("Wrong data type");
   }
 
+  if (!timeZone || timeZone === "") {
+    throw new Error("No timezone provided");
+  }
+
   return data.filter((item) => item.timezone === timeZone);
 };
 
@@ -54,6 +86,10 @@ const filterByState = ({ data, state }) => {
 
   if (!Array.isArray(data)) {
     throw new Error("Wrong data type");
+  }
+
+  if (!state || state === "") {
+    throw new Error("No state provided");
   }
 
   return data.filter((item) => item.state === state);
@@ -77,7 +113,7 @@ const filterClosestLocations = ({
 
   if (radiusToCalculate) {
     if (isNaN(radiusToCalculate)) {
-      throw new Error("radius value is not number");
+      throw new Error("Radius value is not number");
     }
     radius = parseInt(radiusToCalculate);
   }
@@ -89,7 +125,26 @@ const filterClosestLocations = ({
   if (!Array.isArray(data)) {
     throw new Error("Wrong data type");
   }
-  const center = { latitude: latitude, longitude: longitude };
+
+  if (!latitude) {
+    throw new Error("No latitude provided");
+  }
+
+  if (isNaN(latitude)) {
+    throw new Error("Latitude should be a number");
+  }
+
+  if (!longitude) {
+    throw new Error("No longitude provided");
+  }
+
+  if (isNaN(longitude)) {
+    throw new Error("Longitude should be a number");
+  }
+  const center = {
+    latitude: parseFloat(latitude),
+    longitude: parseFloat(longitude),
+  };
   return data.filter((item) =>
     insideCircle(
       {
@@ -103,6 +158,7 @@ const filterClosestLocations = ({
 };
 
 module.exports = {
+  filterByZipCode,
   filterByTimeZone,
   filterByPrimaryCity,
   filterByState,
