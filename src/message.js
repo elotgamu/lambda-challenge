@@ -1,6 +1,7 @@
-module.exports.handler = (event) => {
-  return {
+module.exports.handler = (event, context, callback) => {
+  const response = {
     statusCode: 200,
-    body: { message: "Hello World" },
+    body: JSON.stringify({ message: "Hello World" }),
   };
+  return callback(null, response);
 };

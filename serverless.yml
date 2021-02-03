@@ -1,9 +1,27 @@
+org: elotgamu
+app: lambda-challenge-serverless
 service: lambda-challenge
 # default to avoid serverless command to fail
 provider:
   name: aws
   runtime: nodejs12.x
+  stage: dev # Default stage to be used. Default is "dev"
+  region: us-east-1
   lambdaHashingVersion: "20201221"
+
+package:
+  individually: false
+  exclude:
+    - .git/**
+
+plugins:
+  - serverless-jest-plugin
+custom:
+  jest:
+    # You can pass jest options here
+    # See details here: https://facebook.github.io/jest/docs/configuration.html
+    # For instance, uncomment next line to enable code coverage
+    # collectCoverage: true
 
 functions:
   message:

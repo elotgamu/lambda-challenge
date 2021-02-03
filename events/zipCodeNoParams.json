@@ -1,6 +1,5 @@
 {
   "httpMethod": "GET",
   "path": "/resource",
-  "headers": {},
-  "queryStringParameters": {}
+  "headers": {}
 }

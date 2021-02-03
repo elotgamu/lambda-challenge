@@ -102,3 +102,8 @@ After you submit the completed project, we will schedule a follow-up code-review
 - nodejs v12
 - `npm run install`
 - Run any of the above commands
+
+## Endpoints:
+
+- POST - https://6zo7lmhfj6.execute-api.us-east-1.amazonaws.com/dev/resource
+- GET - https://6zo7lmhfj6.execute-api.us-east-1.amazonaws.com/dev/resource
