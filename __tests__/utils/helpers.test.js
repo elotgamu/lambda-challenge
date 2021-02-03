@@ -19,7 +19,6 @@ describe("Filter by zip code", () => {
 
   test("filter by zip code to throw error when no zipcode is provided", () => {
     const response = () => filterByZipCode({ data: data });
-    console.log(response);
     expect(response).toThrowError("Zipcode not provided");
   });
 
